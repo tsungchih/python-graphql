@@ -1,0 +1,11 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata: 
+  name: {{ include "airmon-graphql.fullname" . }}
+  labels:
+{{ include "airmon-graphql.labels" . | indent 4 }}
+spec:
+  host: {{ include "airmon-graphql.fullname" . }}.default.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: {{ .Values.virtualService.policy }}

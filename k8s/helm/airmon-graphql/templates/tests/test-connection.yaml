@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "airmon-graphql.fullname" . }}-test-connection"
+  labels:
+{{ include "airmon-graphql.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "airmon-graphql.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
