@@ -89,7 +89,7 @@ class PM25Query(ObjectType):
     pm10 = List(PM10Site, county=String(default_value="臺北市"))
 
     async def resolve_counties(root, info, county):
-        target_url = "https://opendata.epa.gov.tw/ws/Data/ATM00625/?$format=json"
+        target_url = "https://opendata.epa.gov.tw/api/v1/ATM00625/?$format=json"
         #query = PM25RemoteQuery(target_url)
         #data = query.get_data()
         data = await get_json_from(session=info.context['session'], api_url=target_url, sslcontext=info.context['sslctx'])
