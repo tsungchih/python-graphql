@@ -10,7 +10,7 @@ build:
 
 .PHONY: run
 run:
-	@$(DOCKER) run --name $(DOCKER_TAG) -d -p 10443:443 -p 8080:80 -v $(PWD)/app:/app/app -v $(PWD)/certs:/certs $(DOCKER_TAG):$(DOCKER_VER)
+	@$(DOCKER) run --name $(DOCKER_TAG) -d -p 10443:443 -p 8080:80 -v $(PWD)/src/app:/app/app -v $(PWD)/certs:/certs $(DOCKER_TAG):$(DOCKER_VER)
 
 .PHONY: attach
 login:
@@ -22,7 +22,7 @@ logs:
 
 .PHONY: reload
 reload:
-	@$(DOCKER) run --name $(DOCKER_TAG) -d -p 10443:443 -p 8080:80 -v $(PWD)/app:/app/app -v $(PWD)/certs:/certs $(DOCKER_TAG):$(DOCKER_VER) /start-reload.sh
+	@$(DOCKER) run --name $(DOCKER_TAG) -d -p 10443:443 -p 8080:80 -v $(PWD)/src/app:/app/app -v $(PWD)/certs:/certs $(DOCKER_TAG):$(DOCKER_VER) /start-reload.sh
 
 .PHONY: stop
 stop:
